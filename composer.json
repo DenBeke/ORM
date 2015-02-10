@@ -1,0 +1,21 @@
+{
+    "name": "denbeke/orm",
+    "description": "Simple ORM implementation for PHP",
+    "authors": [
+        {
+            "name": "Mathias Beke",
+            "email": "git@denbeke.be"
+        }
+    ],
+    
+    "autoload": {
+        "files": {
+            "ORM": "core/orm.php"
+        }
+    },
+    
+    "require": {
+        "php": ">=5.4.0",
+        "usmanhalalit/pixie": "1.*@dev"
+    }
+}
