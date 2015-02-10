@@ -6,7 +6,7 @@ namespace DenBeke\ORM {
     $config = [
         'driver'    => 'mysql', // Db driver
         'host'      => 'localhost',
-        'database'  => 'ac-ladder',
+        'database'  => 'my_database',
         'username'  => 'root',
         'password'  => 'root',
     ];
