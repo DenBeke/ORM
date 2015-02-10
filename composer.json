@@ -9,9 +9,9 @@
     ],
     
     "autoload": {
-        "files": {
-            "ORM": "core/orm.php"
-        }
+        "psr-0": {
+			"ORM": "core/"
+		}
     },
     
     "require": {
