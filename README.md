@@ -26,13 +26,14 @@ You can of course also install this package using Composer:
 Add `"denbeke/orm": "dev-master"` to your requirements and add the following code to the root
 of the `composer.json` file to add the Github repo:
 
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/DenBeke/ORM.git"
-        }
-    ],
-
+```json
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/DenBeke/ORM.git"
+    }
+],
+```
 
 Usage
 -----
@@ -45,13 +46,15 @@ Usage
 
 Creating an "ORM-ready" class is very simple, just inherit from `\DenBeke\ORM\ORM`.
 
-    class Person extends \DenBeke\ORM\ORM {
+```php
+class Person extends \DenBeke\ORM\ORM {
     
-        public $id;
-        public $name;
-        public $city;
+    public $id;
+    public $name;
+    public $city;
     
-    }
+}
+```
 
 After writing the code, you must also add a table `person` to the database, with the fields `id`, `name`, `city`.  
 As you may have noticed, the table name is derived from the Class name (without namespaces) and the column names are just the names of the PHP fields.
