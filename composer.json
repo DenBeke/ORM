@@ -9,8 +9,8 @@
     ],
     
     "autoload": {
-        "psr-0": {
-			"DenBeke\\ORM": "core/"
+        "psr-4": {
+			"DenBeke\\ORM\\": "core/"
 		}
     },
     
