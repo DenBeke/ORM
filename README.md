@@ -3,7 +3,7 @@ ORM
 
 *Simple ORM implementation for PHP*
 
-When working with SQL databases, there is always a same monkey work that has to be done,
+When working with SQL databases, there is always the same monkey work that has to be done,
 like selecting using the table parameters, putting the result back in to a class, ...
 
 ORM (object-relational mapping) solves this problem, you can just call some methods on classes,
@@ -127,6 +127,22 @@ $person = Person::getById(3)[0];
 
 $person->remove();
 ```
+
+
+License
+-------
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.  
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.  
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 
 
 Author
