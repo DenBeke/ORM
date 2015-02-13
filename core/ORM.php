@@ -22,7 +22,7 @@
 
 namespace DenBeke\ORM {
    
-   require __DIR__ . '/db.php';
+   //require __DIR__ . '/db.php';
     
     
     /**
@@ -32,6 +32,26 @@ namespace DenBeke\ORM {
 
         
         private static $get_by = "getBy";
+        protected static $init = false;
+
+        /**
+         * Initialize ORM
+         * 
+         * Pass a config of the following format to the function:
+         *   $config = [
+         *       'driver'    => 'mysql', // Db driver
+         *       'host'      => 'localhost',
+         *       'database'  => 'my_database',
+         *       'username'  => 'root',
+         *       'password'  => 'root',
+         *   ];
+         * 
+         * @param config
+         */
+        public static function init($config) {
+            new \Pixie\Connection('mysql', $config, 'DenBeke\ORM\DB');
+            static::$init = true;
+        }
 
         
         /**
@@ -72,6 +92,8 @@ namespace DenBeke\ORM {
          * @param options
          */
         public static function __callStatic($name, $arguments) {
+        
+            static::requireInit();
         
             // check if we know the given method
             if(strpos($name, self::$get_by) === false) {
@@ -117,6 +139,9 @@ namespace DenBeke\ORM {
          * @param (optional) options
          */
         public static function get($options = Null) {
+            
+            static::requireInit();
+            
             $query = DB::table(static::getTable())->select('*');
             $result = $query->get();
             
@@ -131,6 +156,9 @@ namespace DenBeke\ORM {
          * @pre record must already exist in database
          */
         public function update() {
+            
+            static::requireInit();
+            
             if( !isset($this->id)) {
                 throw new \exception("update() only works when id is set");
             }
@@ -145,6 +173,9 @@ namespace DenBeke\ORM {
          * Add this record to the database
          */
         public function add() {
+            
+            static::requireInit();
+            
             $table = static::getTable();
             $data  = $this->getFields();
  
@@ -159,6 +190,9 @@ namespace DenBeke\ORM {
          * @pre id is set (and is a table field)
          */
         public function remove() {
+            
+            static::requireInit();
+            
             if( !isset($this->id)) {
                 throw new \exception("remove() only works when id is set");
             }
@@ -199,6 +233,13 @@ namespace DenBeke\ORM {
             }
             else {
                 return new static($result);
+            }
+        }
+        
+        
+        static protected function requireInit() {
+            if(!static::$init) {
+                throw new \exception('\DenBeke\ORM\ORM not initialized.');
             }
         }
         

@@ -38,8 +38,24 @@ of the `composer.json` file to add the Github repo:
 Usage
 -----
 
-*Before you can do anything you must edit the config in the `db.php` file
-(this is the configuration of Pixie, the query builder).*
+### Configuration & Initialization
+
+*Before you can do anything you must call the `\DenBeke\ORM\ORM::init()` function (you must do this once in your application). An exception will be thrown if you call a method on an uninitialized ORM class.*  
+`\DenBeke\ORM\ORM::init()` takes an associative PHP array as argument. This array must contain some basic database configuration.
+
+```php
+$db_config = [
+    'driver'    => 'mysql', // Db driver
+    'host'      => 'localhost',
+    'database'  => 'my_database_name',
+    'username'  => 'root',
+    'password'  => 'root',
+];
+\DenBeke\ORM\ORM::init($db_config);
+```
+
+The `$db_config` array will be passed yo Pixie query builder. This means you can use all Pixie configuration options.
+
 
 
 ### ORM class
