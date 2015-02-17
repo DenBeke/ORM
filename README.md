@@ -15,7 +15,7 @@ This implementation is naive and very simple, but can spare you a lot of time an
 Install
 -------
 
-Since writing queries is something I don't always enjoy, this ORM packages depends on a query builder: [Pixie](https://github.com/usmanhalalit/pixie) (by Muhammad Usman).
+Since writing queries is a task I don't always enjoy, this ORM packages depends on a query builder: [Pixie](https://github.com/usmanhalalit/pixie) (by Muhammad Usman).
 
 Dependencies are installed through [Composer](https://getcomposer.org):
 
@@ -54,7 +54,7 @@ $db_config = [
 \DenBeke\ORM\ORM::init($db_config);
 ```
 
-The `$db_config` array will be passed yo Pixie query builder. This means you can use all Pixie configuration options.
+The `$db_config` array will be passed to Pixie query builder. This means you can use all Pixie configuration options.
 
 
 
