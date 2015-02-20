@@ -139,4 +139,23 @@ class ORMTest extends DenBekePHPUnit {
         
     }
     
+
+    /**
+     * Test the \DenBeke\ORM\ORM::add() method
+     *
+     * @depends testInit
+     */
+    public function testAdd() {
+        
+        $person = new Person(['name' => 'Mathias', 'city' => 'Antwerp']);
+        $id = $person->add();
+        
+        $this->assertEquals($id, 3);
+        
+        $person = Person::getById(3);
+        $this->assertEquals(sizeof($person), 1);
+        $this->assertEquals($person[0]->name, 'Mathias');
+        
+    }
+    
 }
