@@ -8,6 +8,10 @@
         }
     ],
     
+    "config" : {
+        "vendor-dir" : "core/lib"
+    },
+    
     "autoload": {
         "psr-4": {
 			"DenBeke\\ORM\\": "core/"
