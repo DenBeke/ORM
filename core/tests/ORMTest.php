@@ -158,4 +158,22 @@ class ORMTest extends DenBekePHPUnit {
         
     }
     
+    /**
+     * Test the \DenBeke\ORM\ORM::update() method
+     *
+     * @depends testInit
+     */
+    public function testUdate() {
+                
+        $person = Person::getById(1)[0];
+        $person->name = 'John';
+        
+        $person->update();
+        
+        $person = Person::getById(1);
+        $this->assertEquals($person[0]->name, 'John');
+        $this->assertEquals($person[0]->city, 'Amsterdam');
+        
+    }
+    
 }
