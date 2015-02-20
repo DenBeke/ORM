@@ -57,7 +57,7 @@ class ORMTest extends DenBekePHPUnit {
      * Basic testing for the constructor and the assignments
      *
      * @test
-     */    
+     */
     public function testConstructor() {
         
         // Person created from associative array
@@ -100,6 +100,8 @@ class ORMTest extends DenBekePHPUnit {
     
     
     /**
+     * Test the \DenBeke\ORM\ORM::get() method which gets all the records
+     *
      * @depends testInit
      */
     public function testGet() {
@@ -107,6 +109,34 @@ class ORMTest extends DenBekePHPUnit {
         
         $this->assertEquals(sizeof($persons), 2);
         $this->assertEquals(get_class($persons[0]), 'Person');
+    }
+    
+
+    /**
+     * Test the \DenBeke\ORM\ORM::getBy*() method
+     * which shoudl return one occurence for given column.
+     *
+     * @depends testInit
+     */
+    public function testGetBy() {
+        
+        $person = Person::getById(1);
+        $this->assertEquals(sizeof($person), 1);
+        $this->assertEquals($person[0]->name, 'Bob');
+        
+        $person = Person::getById(2);
+        $this->assertEquals(sizeof($person), 1);
+        $this->assertEquals($person[0]->name, 'Alice');
+        
+        $person = Person::getByName('Bob');
+        $this->assertEquals(sizeof($person), 1);
+        $this->assertEquals($person[0]->name, 'Bob');
+        
+        $person = Person::getByCity('Brussels');
+        $this->assertEquals(sizeof($person), 1);
+        $this->assertEquals($person[0]->name, 'Alice');
+
+        
     }
     
 }
