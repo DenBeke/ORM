@@ -1,6 +1,8 @@
 ORM
 ===
 
+[![Build Status](https://travis-ci.org/DenBeke/ORM.svg?branch=master)](https://travis-ci.org/DenBeke/ORM)
+
 *Simple ORM implementation for PHP*
 
 When working with SQL databases, there is always the same monkey work that has to be done,
