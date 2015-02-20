@@ -4,6 +4,9 @@
  */
 
 
+require_once __DIR__ . '/config.php';
+
+
 class Person extends \DenBeke\ORM\ORM {
 
     public $id;
@@ -14,6 +17,17 @@ class Person extends \DenBeke\ORM\ORM {
 
 
 class ORMTest extends PHPUnit_Framework_TestCase {
+    
+    
+    public function setUp() {
+        
+        global $db_config;
+        $db = new PDO($db_config['driver'] . ':host=' . $db_config['host'] . ';dbname=' . $db_config['database'] . ';charset=utf8', $db_config['username'], $db_config['password']);
+
+        global $dump;
+        $db->exec(file_get_contents($dump));
+
+    }
     
 
     /**
@@ -46,6 +60,30 @@ class ORMTest extends PHPUnit_Framework_TestCase {
         $person->city = 'Brussels';
         $this->assertEquals($person->city, 'Brussels');
         
+    }
+    
+    
+    /**
+     * Testing the \DenBeke\ORM\ORM::init() function
+     *
+     * @test
+     */
+    public function testInit() {
+        global $db_config;
+        
+        \DenBeke\ORM\ORM::init($db_config);
+        
+    }
+    
+    
+    /**
+     * @depends testInit
+     */
+    public function testGet() {
+        $persons = Person::get();
+        
+        $this->assertEquals(sizeof($persons), 2);
+        $this->assertEquals(get_class($persons[0]), 'Person');
     }
     
 }
