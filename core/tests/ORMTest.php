@@ -176,4 +176,24 @@ class ORMTest extends DenBekePHPUnit {
         
     }
     
+    
+    /**
+     * Test the \DenBeke\ORM\ORM::remove() method
+     *
+     * @depends testInit
+     */
+    public function testRemove() {
+                
+        $person = Person::getById(1)[0];
+        
+        $person->remove();
+        
+        $person = Person::getById(1);
+        $this->assertEquals(sizeof($person), 0);
+        
+        $persons = Person::get();
+        $this->assertEquals(sizeof($persons), 1);
+        
+    }
+    
 }
