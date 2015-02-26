@@ -250,4 +250,57 @@ class ORMTest extends DenBekePHPUnit {
         
     }
     
+    
+    /**
+     * Test the \DenBeke\ORM\ORM::setOptions() method for 'limit' option
+     *
+     * @depends testInit
+     */
+    public function testLimit() {
+        
+        $person = new Person(['name' => 'A', 'city' => 'B']);
+        $id = $person->add();
+
+        $person = new Person(['name' => 'C', 'city' => 'D']);
+        $id = $person->add();
+
+    
+        $persons = Person::get(['limit' => 1]);
+        $this->assertEquals(1, sizeof($persons));
+        
+        $persons = Person::get(['limit' => 4]);
+        $this->assertEquals(4, sizeof($persons));
+    
+    }
+    
+    
+    /**
+     * Test the \DenBeke\ORM\ORM::setOptions() method for 'limit' and 'orderBy' options
+     *
+     * @depends testInit
+     */
+    public function testLimitAndOrderBy() {
+        
+        $person = new Person(['name' => 'C', 'city' => 'CC']);
+        $id = $person->add();
+        
+        $person = new Person(['name' => 'D', 'city' => 'DD']);
+        $id = $person->add();
+        
+        $options = [
+            'orderBy' => ['name', 'ASC'],
+            'limit' => 2,
+        ];
+        
+        $persons = Person::get($options);
+        $this->assertEquals('Alice', $persons[0]->name);
+        $this->assertEquals('Bob', $persons[1]->name);
+        $this->assertEquals(2, sizeof($persons));
+        
+        
+
+        
+    }
+    
+    
 }

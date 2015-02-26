@@ -144,6 +144,9 @@ namespace DenBeke\ORM {
          * @return query object
          */
         protected static function setOptions($query, $options) {
+            if(isset($options['limit'])) {
+                $query = $query->limit($options['limit']);
+            }
             if(isset($options['orderBy'])) {
                 $options['orderBy'] = $options['orderBy'] + [Null, Null];
                 $query = $query->orderBy($options['orderBy'][0], $options['orderBy'][1]);

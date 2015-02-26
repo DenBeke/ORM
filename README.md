@@ -122,6 +122,12 @@ $options = [
 ];
 ```
 
+##### limit
+
+```php
+$persons = Person::get(['limit' => 4]);
+```
+
 ##### orderBy
 
 You can order your results by supplying the `orderBy` option. `orderBy` should be an array,
