@@ -196,4 +196,58 @@ class ORMTest extends DenBekePHPUnit {
         
     }
     
+
+    /**
+     * Test the \DenBeke\ORM\ORM::setOptions() method for 'orderBy' options
+     *
+     * @depends testInit
+     */
+    public function testOrderBy() {
+        
+        // order by DESC
+        $options = [
+            'orderBy' => ['name', 'DESC'],
+        ];
+        
+        $persons = Person::get($options);
+        $this->assertEquals('Bob', $persons[0]->name);
+        
+        
+        // order by without option (= default = ASC)
+        $options = [
+            'orderBy' => ['name'],
+        ];
+        
+        $persons = Person::get($options);
+        $this->assertEquals('Alice', $persons[0]->name);
+        
+        
+        // order by ASC
+        $options = [
+            'orderBy' => ['name', 'ASC'],
+        ];
+        
+        $persons = Person::get($options);
+        $this->assertEquals('Alice', $persons[0]->name);
+        
+        
+        // add other records and check again
+        $person = new Person(['name' => 'M', 'city' => 'Gent']);
+        $id = $person->add();
+        
+        $options = [
+            'orderBy' => ['name', 'DESC'],
+        ];
+        
+        $persons = Person::get($options);
+        $this->assertEquals('M', $persons[0]->name);
+        
+        $person = new Person(['name' => 'Z', 'city' => 'Antwerp']);
+        $id = $person->add();
+        
+        $persons = Person::get($options);
+        $this->assertEquals('Z', $persons[0]->name);
+        
+    }
+    
 }

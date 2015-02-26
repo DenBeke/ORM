@@ -2,19 +2,19 @@
 
 /*
  * Object-relational mapping implementation
- * 
+ *
  * Copyright (C) 2015 Mathias Beke
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -26,7 +26,7 @@ namespace DenBeke\ORM {
     
     
     /**
-     * NOTE: options not yet implemented
+     * NOTE: options are WIP
      */
     abstract class ORM {
 
@@ -36,7 +36,7 @@ namespace DenBeke\ORM {
 
         /**
          * Initialize ORM
-         * 
+         *
          * Pass a config of the following format to the function:
          *   $config = [
          *       'driver'    => 'mysql', // Db driver
@@ -45,7 +45,7 @@ namespace DenBeke\ORM {
          *       'username'  => 'root',
          *       'password'  => 'root',
          *   ];
-         * 
+         *
          * @param config
          */
         public static function init($config) {
@@ -56,14 +56,14 @@ namespace DenBeke\ORM {
         
         /**
          * Constructor
-         * 
+         *
          *   Leave emtpy for default constructor
          *   Otherwise use associative array, for each of the properties
          *   in the class you want to assign.
-         * 
+         *
          *   e.g. if your class has the fields $name and $city
          *        new Person(['name' => 'Bob', 'city' => 'Amsterdam']);
-         * 
+         *
          * @param fields
          */
         public function __construct($fields = Null) {
@@ -105,7 +105,7 @@ namespace DenBeke\ORM {
         
             // check for the field.
             if( !property_exists(get_called_class(), $field)) {
-                throw new \exception("Undefinied ORM field: $field"); 
+                throw new \exception("Undefinied ORM field: $field");
             }
             
             // check for the value
@@ -120,16 +120,38 @@ namespace DenBeke\ORM {
             // TODO
             if( isset($arguments[1]) ) {
                 $options = $arguments[1];
-                
+            } else {
+                $options = [];
             }
             
             
-            // get result and return
+            // get result, add options and return
             $query = DB::table(static::getTable())->select('*')->where($field, '=', $value);
+            $query = self::setOptions($query, $options);
             $result = $query->get();
             
             return static::unpackResult($result);
         
+        }
+        
+        
+        
+        /**
+         * Add options to Pixie query
+         *
+         * @param query object
+         * @param options
+         * @return query object
+         */
+        protected static function setOptions($query, $options) {
+            if(isset($options['orderBy'])) {
+                if(!isset($options['orderBy'][1])) {
+                    $options['orderBy'][1] == Null;
+                }
+                $query = $query->orderBy($options['orderBy'][0], $options['orderBy'][1]);
+            }
+            
+            return $query;
         }
         
         
@@ -138,11 +160,12 @@ namespace DenBeke\ORM {
          *
          * @param (optional) options
          */
-        public static function get($options = Null) {
+        public static function get($options = []) {
             
             static::requireInit();
             
             $query = DB::table(static::getTable())->select('*');
+            $query = self::setOptions($query, $options);
             $result = $query->get();
             
             return static::unpackResult($result);
@@ -203,7 +226,7 @@ namespace DenBeke\ORM {
         
         /**
          * Returns associative array containing the fields and their value
-         */ 
+         */
         private function getFields() {
             return get_object_vars($this);
         }

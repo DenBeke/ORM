@@ -109,6 +109,34 @@ Whenever a class has a field, the caller can get records from the database by th
 
 Those static functions will return an array of Person elements, where the input parameter matches the table column.
 
+#### Options
+
+*Work In Progress*
+
+You can supply options to the `get()` and `getBy*()` methods. The options parameter is an associative array.
+
+```php
+$options = [
+    'option1' => '...',
+    'option2' => '...'
+];
+```
+
+##### orderBy
+
+You can order your results by supplying the `orderBy` option. `orderBy` should be an array,
+containing the the database column/field to order by, and an optional direction (`ASC` or `DESC', default `ASC`).
+
+If you have e.g. *Bob*, *John*, *Alice* in your database, the following operation will return *Alice*, *Bob*, *John*.
+
+```php
+$options = [
+    'orderBy' => ['name', 'ASC'],
+];
+
+$persons = Person::get($options);
+```
+
 
 ### add()
 
