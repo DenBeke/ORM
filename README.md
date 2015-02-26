@@ -15,21 +15,21 @@ This implementation is naive and very simple, but can spare you a lot of time an
 
 ---
 
-- [Install](#)
-- [Usage](#)
-    - [Configuration & Initialization](#)
-    - [ORM class](#)
-    - [Get methods](#)
-        - [get()](#)
-        - [getBy*()](#)
-        - [Options](#)
-            - [limit](#)
-            - [orderBy](#)
-    - [add()](#)
-    - [update()](#)
-    - [remove()](#)
-- [License](#)
-- [Author](#)
+- [Install](#install)
+- [Usage](#usage)
+    - [Configuration & Initialization](#configuration--initialization)
+    - [ORM class](#orm-class)
+    - [Get methods](#get-methods)
+        - [get()](#get)
+        - [getBy*()](#getby)
+        - [Options](#options)
+            - [limit](#limit)
+            - [orderBy](#orderby)
+    - [add()](#add)
+    - [update()](#update)
+    - [remove()](#remove)
+- [License](#license)
+- [Author](#author)
 
 
 Install
