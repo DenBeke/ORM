@@ -13,6 +13,24 @@ using the properties defined in your classes.
 
 This implementation is naive and very simple, but can spare you a lot of time and work.
 
+---
+
+- [Install](#)
+- [Usage](#)
+    - [Configuration & Initialization](#)
+    - [ORM class](#)
+    - [Get methods](#)
+        - [get()](#)
+        - [getBy*()](#)
+        - [Options](#)
+            - [limit](#)
+            - [orderBy](#)
+    - [add()](#)
+    - [update()](#)
+    - [remove()](#)
+- [License](#)
+- [Author](#)
+
 
 Install
 -------
