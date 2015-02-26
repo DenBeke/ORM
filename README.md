@@ -93,7 +93,7 @@ class Person extends \DenBeke\ORM\ORM {
 ```
 
 After writing the code, you must also add a table `person` to the database, with the fields `id`, `name`, `city`.  
-As you may have noticed, the table name is derived from the Class name (without namespaces) and the column names are just the names of the PHP fields.
+As you may have noticed, the table name is derived from the Class name (without namespaces and converted to lowercase!) and the column names are just the names of the PHP fields.
 
 The ORM implements a default constructor which takes an associative array or an stdClass and assigns the values from the input to the fields of the new object.
 
