@@ -29,10 +29,10 @@ class DenBekePHPUnit extends PHPUnit_Framework_TestCase {
      */
     
     public static function getPrivateMethod($obj, $name) {
-      $class = new ReflectionClass($obj);
-      $method = $class->getMethod($name);
-      $method->setAccessible(true);
-      return $method;
+        $class = new ReflectionClass($obj);
+        $method = $class->getMethod($name);
+        $method->setAccessible(true);
+        return $method;
     }
 
 }
