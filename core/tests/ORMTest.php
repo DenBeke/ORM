@@ -232,7 +232,7 @@ class ORMTest extends DenBekePHPUnit {
         
         
         // add other records and check again
-        $person = new Person(['name' => 'M', 'city' => 'Gent']);
+        $person = new Person(['name' => 'M', 'city' => 'A']);
         $id = $person->add();
         
         $options = [
@@ -242,11 +242,19 @@ class ORMTest extends DenBekePHPUnit {
         $persons = Person::get($options);
         $this->assertEquals('M', $persons[0]->name);
         
-        $person = new Person(['name' => 'Z', 'city' => 'Antwerp']);
+        $person = new Person(['name' => 'Z', 'city' => 'A']);
         $id = $person->add();
         
         $persons = Person::get($options);
         $this->assertEquals('Z', $persons[0]->name);
+        
+        
+        $options = [
+            'orderBy' => ['name'],
+        ];
+        
+        $persons = Person::getByCity('A', $options);
+        $this->assertEquals('M', $persons[0]->name);
         
     }
     
