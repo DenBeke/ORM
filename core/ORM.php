@@ -144,6 +144,16 @@ namespace DenBeke\ORM {
          * @return query object
          */
         protected static function setOptions($query, $options) {
+            foreach ($options as $option => $value) {
+                switch (strtoupper($option)) {
+                    case 'ORWHERE':
+                        $query = $query->orWhere(...$value);
+                        break;
+                    case 'ANDWHERE':
+                        $query = $query->where(...$value);
+                        break;
+                }
+            }
             if(isset($options['limit'])) {
                 $query = $query->limit($options['limit']);
             }
