@@ -25,6 +25,8 @@ This implementation is naive and very simple, but can spare you a lot of time an
         - [Options](#options)
             - [limit](#limit)
             - [orderBy](#orderby)
+            - [AND](#and)
+            - [OR](#or)
     - [add()](#add)
     - [update()](#update)
     - [remove()](#remove)
@@ -190,7 +192,7 @@ $options = [
     ]
 ];
 
-Person::getByCity($city, $options);
+Person::getByCity('Brussels', $options);
 ```
 
 
