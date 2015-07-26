@@ -161,6 +161,38 @@ $options = [
 $persons = Person::get($options);
 ```
 
+##### AND
+
+Adding `AND` clause to the `getBy*` method can be done using the `andWhere` option.
+
+```php
+$options = [
+    'andWhere' => [
+        'age',
+        '>',
+        18
+    ]
+];
+
+Person::getByName($name, $options);
+```
+
+##### OR
+
+Adding `OR` clause to the `getBy*` method can be done using the `orWhere` option.
+
+```php
+$options = [
+    'orWhere' => [
+        'city',
+        '=',
+        'Antwerp'
+    ]
+];
+
+Person::getByCity($city, $options);
+```
+
 
 ### add()
 
