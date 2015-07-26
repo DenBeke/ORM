@@ -147,10 +147,14 @@ namespace DenBeke\ORM {
             foreach ($options as $option => $value) {
                 switch (strtoupper($option)) {
                     case 'ORWHERE':
-                        $query = $query->orWhere(...$value);
+                        //$query = $query->orWhere(...$value);
+                        //   -> newer syntax introduced in PHP 5.6
+                        $query = call_user_func_array([$query, 'orWhere'], $value);
                         break;
                     case 'ANDWHERE':
-                        $query = $query->where(...$value);
+                        //$query = $query->where(...$value);
+                        //   -> newer syntax introduced in PHP 5.6
+                        $query = call_user_func_array([$query, 'where'], $value);
                         break;
                 }
             }
