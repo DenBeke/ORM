@@ -14,8 +14,8 @@
     
     "autoload": {
         "psr-4": {
-			"DenBeke\\ORM\\": "core/"
-		}
+            "DenBeke\\ORM\\": "core/"
+        }
     },
     
     "require": {
