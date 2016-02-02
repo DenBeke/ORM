@@ -1,6 +1,7 @@
 {
     "name": "denbeke/orm",
     "description": "Simple ORM implementation for PHP",
+    "license": "GPLv3",
     "authors": [
         {
             "name": "Mathias Beke",
